@@ -1,5 +1,4 @@
 # Create by Bender
-
 import random
 
 evil_calculon = "\U0001F606"
