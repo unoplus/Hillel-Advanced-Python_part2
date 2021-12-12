@@ -18,9 +18,11 @@ while True:
                   f'Number of attempts: {count}')
             break
         elif int(user_num) < guess_num:
-            print(f'Ha ha ha! Your number is less than mine! {mockery_calculon}')
+            print(f'Ha ha ha! Your number is less than '
+            f'mine! {mockery_calculon}')
         else:
-            print(f'Ha ha ha! Your number is greater than mine! {mockery_calculon}')
+            print(f'Ha ha ha! Your number is greater than '
+            f'mine! {mockery_calculon}')
     else:
-        print(f'Oh you pathetic bag of bones, you are allowed to enter a number from 1 to 100,'
-              f' try again! {mockery_calculon}')
+        print(f'Oh you pathetic bag of bones, you are allowed to enter '
+        f'a number from 1 to 100, try again! {mockery_calculon}')
