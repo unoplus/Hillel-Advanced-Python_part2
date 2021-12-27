@@ -2,7 +2,7 @@
 ## Starting Django
 
 ## description of folders and files
-___FOLDERS__
+__FOLDERS__
 1. __config__ - _base configuration files for django._
 2. __core__ - _base configuration files for user project._
 3. __migrations__ - _Project migration files._
