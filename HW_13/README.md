@@ -27,3 +27,6 @@ __FILES__
 2. __Pipfile__ - _Virtual environment requirements._
 3. __Pipfile.lock__ - _The lock file is created on the basis of the Pipfile file itself._
 4. __README.md__ - _Project description._
+
+## Update 01 at 01.01.2022
+Created Post and Like in admin panel
