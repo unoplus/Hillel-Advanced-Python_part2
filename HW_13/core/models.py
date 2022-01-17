@@ -1,26 +1,25 @@
 from django.db import models
 from django.conf import settings
-
-
-class TimeStampMixin(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-
-    class Meta:
-        abstract = True
+from django.urls import reverse_lazy
+from .utils import TimeStampMixin
 
 
 class Post(TimeStampMixin):
-    title = models.CharField(max_length=100, null=False, blank=False)
-    content = models.TextField(null=False, blank=False)
+    title = models.CharField(max_length=100, null=False, blank=False, verbose_name='post name')
+    content = models.TextField(null=False, blank=False, verbose_name='content preview')
     images = models.CharField(max_length=255, null=True, blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODULE, null=False, blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODULE, null=True, blank=False, on_delete=models.SET_NULL,
+                             verbose_name='user name')
 
     def __str__(self):
         return self.title
 
 
+    def get_absolute_url(self):
+        return reverse_lazy("model_detail", kwargs={"pk": self.pk})
+
+
 class Like(TimeStampMixin):
-    post = models.ForeignKey('Post', null=False, blank=False, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, null=False, blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODULE, null=False, blank=False, on_delete=models.CASCADE)
     status = models.BooleanField(null=True, blank=True)

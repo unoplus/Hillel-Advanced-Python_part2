@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock title %}
+{% block content %}
+<div class="container mt-3">
+    <h1>{{ title }}</h1>
+    <div class="row">
+        {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-start">
+                            User name: {{ post.user }}
+                        </div>
+                        <div class="col text-end">
+                            User posts: {{ post.count }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content|truncatewords:100 }}</p>
+                <a href="#" class="btn btn-primary">Read more...</a>
+            </div>
+            <div class="card-footer text-muted">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-start">
+                            Updated at: {{ post.updated_at }}
+                        </div>
+                        <div class="col text-end">
+                            Likes: {{ post.likes }} | Dislikes: {{ post.dislikes }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
