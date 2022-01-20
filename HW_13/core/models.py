@@ -16,7 +16,7 @@ class Post(TimeStampMixin):
 
 
     def get_absolute_url(self):
-        return reverse_lazy("model_detail", kwargs={"pk": self.pk})
+        return reverse_lazy("post_view", kwargs={"pk": self.pk})
 
 
 class Like(TimeStampMixin):
