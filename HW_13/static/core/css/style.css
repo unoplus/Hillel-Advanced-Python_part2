@@ -1,3 +1,40 @@
+@font-face {
+    font-family: "FilthAOE";
+    font-style: normal;
+    font-weight: 400;
+    /* The browser will first try to find the correct font */
+    src: local("FilthAOE"),
+        /* If it doesn't work, download woff2 */ url("/static/core/fonts/FilthAOE.woff2") format("woff2"),
+        /* If the browser does not support woff2, it will load woff */ url("/static/core/fonts/FilthAOE.woff")
+            format("woff");
+}
+
 body {
-    background-color: darkgray;
+    background-image: url("/static/images/stuff_only/background.jpg");
+    font-family: "FilthAOE", "Arial", sans-serif;
+    color: #8b0000;
+    font-size: 200%;
+}
+
+h1 {
+    font-family: "FilthAOE", "Arial", sans-serif;
+    color: #8b0000;
+    font-size: 300%;
+}
+
+.card-body {
+    background-image: url("/static/images/stuff_only/posts_body.jpg");
+}
+
+.card-header,
+.card-footer {
+    background-image: url("/static/images/stuff_only/card_h_f.png");
+}
+
+.submit-row {
+    text-align: right;
+}
+
+input {
+    background-image: url("/static/images/stuff_only/buttons.jpg");
 }
