@@ -41,4 +41,24 @@ Created Post and Like in admin panel
 **Create new app 'user'.**
 **Create page 'posts'.**
 **Create templates, styles, etc.**
-**Add some features like: view all posts, authors, how many posts created by author, likes/dislikes, etc.**
+**Adding some features like: view all posts, authors, how many posts created by author, likes/dislikes, etc.**
+
+## Update 03 at 20.01.2022
+
+**Adding debug toolbar for dev.**
+**Change engine to mySQL for dev.**
+**Create page 'post detail view'.**
+**Create page 'post delete'.**
+**Create templates, styles, etc.**
+**Adding new fonts, backgrounds, etc.**
+**Some SQL-requests tuning.**
+
+## Update 04 at 24.01.2022
+
+**Change engine to postgreSQL for dev.**
+**Create pages 'update posts' and 'create post'.**
+**Adding 'forms.py' with some stuff for forms.**
+**Create templates, styles, etc.**
+**Some code review for optimization**
+**Some SQL-requests tuning.**
+**Adding lib 'pillow'.**
