@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Are you sure?</h1>
-<h1>Are you sure you want to delete the "{{ delete }}"?</h1>
-
-<form method="post" action=".">
-    {% csrf_token %}
-    <input type="submit" value="Kill 'Em All">
-</form>
+<section>
+    <h1>Are you sure?</h1>
+    <h1>Are you sure you want to delete the "{{ delete }}"?</h1>
+    <form method="post" action=".">
+        {% csrf_token %}
+        <input class="button" type="submit" value="Kill 'Em All">
+        <input class="button" type="reset" onclick="history.back();" value="Spare It">
+    </form>
+</section>
 {% endblock content %}

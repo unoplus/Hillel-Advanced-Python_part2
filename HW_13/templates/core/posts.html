@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ title }}{% endblock title %}
+{% block title %}Nightmares{% endblock title %}
 {% block content %}
-<div class="container mt-3">
-    <h1>Posts</h1>
+<div class="container">
+    <h1>Nightmares</h1>
     <div class="row">
         {% for post in posts %}
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card mb-3">
                 <div class="card-header">
                     <div class="container">
@@ -15,7 +15,7 @@
                                 Author: {{ post.user }}
                             </div>
                             <div class="col text-end">
-                                User posts: {{ post.count }}
+                                Created at: {{ post.created_at }}
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <h1 class="card-title">{{ post.title }}</h1>
                     <p class="card-text">{{ post.content|truncatewords:100 }}</p>
-                    <input type="submit" value="Read more..." name="_goto"
+                    <input class="button" type="submit" value="Read more..." name="_goto"
                         onclick="document.location='{% url 'post_view' post.id %}'">
                 </div>
                 <div class="card-footer text-muted">

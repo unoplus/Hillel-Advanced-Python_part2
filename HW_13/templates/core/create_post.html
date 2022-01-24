@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Create post{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-7">
+            <h1 class="col text-center">Add Urban Legends</h1>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <div class="submit-row">
+                    <input class="button" type="submit" value="ADD A NIGHTMARE" name="_create_it">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
