@@ -10,7 +10,7 @@
 }
 
 body {
-    background-image: url("/static/images/stuff_only/background.jpg");
+    background-image: url("/static/images/staff_only/background.jpg");
     font-family: "FilthAOE", "Arial", sans-serif;
     color: #8b0000;
     font-size: 200%;
@@ -23,18 +23,40 @@ h1 {
 }
 
 .card-body {
-    background-image: url("/static/images/stuff_only/posts_body.jpg");
+    background-image: url("/static/images/staff_only/posts_body.jpg");
+}
+
+textarea {
+    background-image: url("/static/images/staff_only/posts_body.jpg");
+}
+
+input,
+select {
+    background-image: url("/static/images/staff_only/card_h_f.png");
+}
+
+section {
+    text-align: center;
+}
+
+.form-control {
+    color: #8b0000;
+    font-size: 100%;
 }
 
 .card-header,
 .card-footer {
-    background-image: url("/static/images/stuff_only/card_h_f.png");
+    background-image: url("/static/images/staff_only/card_h_f.png");
 }
 
 .submit-row {
     text-align: right;
 }
 
-input {
-    background-image: url("/static/images/stuff_only/buttons.jpg");
+.button {
+    background-image: url("/static/images/staff_only/buttons.jpg");
+}
+
+.page-link {
+    color: darkred;
 }
