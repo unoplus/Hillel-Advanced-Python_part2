@@ -5,10 +5,12 @@ name = "pypi"
 
 [packages]
 django = "*"
+pillow = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
 mysqlclient = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.9"
