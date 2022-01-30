@@ -1,16 +1,28 @@
+from django.http.response import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from django.db.models import F
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
-
-class PostsView(ListView):
-    paginate_by = 3
+class HomeView(ListView):
     model = Post
+    template_name = 'core/index.html'
+    #context_object_name = 'elem'
+
+
+class PostsView(PermissionRequiredMixin, ListView):
+    model = Post
+    raise_exception = False
+    login_url = 'home'
+    permission_required = 'core.view_post'
+    paginate_by = 3
     template_name = 'core/posts.html'
     context_object_name = 'posts'
     ordering = ('-created_at',)
+    redirect_field_name = 'next'
+
     
    
     def get_queryset(self):
@@ -21,10 +33,13 @@ class PostsView(ListView):
         return posts_queryset
 
 
-class ViewPost(DetailView):
+class ViewPost(PermissionRequiredMixin, DetailView):
     model = Post
+    login_url = 'home'
+    permission_required = 'core.view_post'
     template_name = 'core/view_post.html'
     context_object_name = 'views'
+    redirect_field_name = 'next'
 
     def get_object(self, queryset=None):
         view = Post.objects.get(pk=self.kwargs.get('pk'))
@@ -37,26 +52,47 @@ class ViewPost(DetailView):
         return view
 
 
-class DeletePost(DeleteView):
+class DeletePost(PermissionRequiredMixin, DeleteView):
     model = Post
+    login_url = 'home'
+    permission_required = 'core.view_post'
     template_name = 'core/delete_post.html'
     context_object_name = 'delete'
-    pk_url_kwarg = 'pk'
     success_url = reverse_lazy('all_posts')
+    redirect_field_name = 'next'
+
+    def get_object(self, queryset=None):
+        temp = Post.objects.get(pk=self.kwargs.get('pk'))
+        if temp.user != self.request.user:
+            raise Http404('Not this time, body!')
+        return super().get_object(queryset)
+
  
 
-class CreatePost(CreateView):
+class CreatePost(PermissionRequiredMixin, CreateView):
     model = Post
+    login_url = 'home'
+    permission_required = 'core.view_post'
     form_class = PostForm
     template_name = 'core/create_post.html'
+    redirect_field_name = 'next'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
 
-class UpdatePost(UpdateView):
+class UpdatePost(PermissionRequiredMixin, UpdateView):
     model = Post
+    login_url = 'home'
+    permission_required = 'core.view_post'
     form_class = PostForm
     template_name = 'core/update_post.html'
-    pk_url_kwarg = 'pk'
+    redirect_field_name = 'next'
+
+    def get_object(self, queryset=None):
+        temp = Post.objects.get(pk=self.kwargs.get('pk'))
+        if temp.user != self.request.user:
+            raise Http404('Not this time, body!')
+        return super().get_object(queryset)
+        

@@ -12,9 +12,11 @@
             <h1 class="col text-center">Update Urban Legends</h1>
             <form method="post" action=".">
                 {% csrf_token %}
+                {{ form.media }}
                 {{ form.as_p}}
                 <div class="submit-row">
                     <input class="button" type="submit" value="UPDATE NIGHTMARE" name="_update_it">
+                    <input class="button" type="reset" onclick="history.back();" value="NO NEED TO">
                 </div>
             </form>
         </div>

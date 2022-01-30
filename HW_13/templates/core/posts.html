@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <h1 class="card-title">{{ post.title }}</h1>
-                    <p class="card-text">{{ post.content|truncatewords:100 }}</p>
+                    <p class="card-text">{{ post.content|truncatewords:100|safe }}</p>
                     <input class="button" type="submit" value="Read more..." name="_goto"
                         onclick="document.location='{% url 'post_view' post.id %}'">
                 </div>
