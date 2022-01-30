@@ -1,7 +1,7 @@
 from django.http.response import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
-from django.db.models import F
+from django.db.models import F, Count
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -9,7 +9,30 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 class HomeView(ListView):
     model = Post
     template_name = 'core/index.html'
-    #context_object_name = 'elem'
+    context_object_name = 'elem'
+    #posts = Post.objects.aggregate(Count('id'))
+    #print(posts)
+
+    #def get_object(self, queryset=None):
+    #    elements = Post.objects.order_by('-count_views')[:3]
+    #    posts = Post.objects.aggregate(Count('id'))
+    #    elements.users = Post.objects.aggregate(Count('id', distinct=True))
+    #    print(posts)
+    #    return elements
+        #return super().get_object(queryset)
+    
+    def get_queryset(self):
+        elements = Post.objects.order_by('-count_views')[:3]
+        elements.posts = Post.objects.aggregate(Count('id'))
+        elements.users = Post.objects.aggregate(Count('id', distinct=True))
+        return super().get_queryset()
+    
+    
+    #def get_popular(objects_number=3):
+    #    elements = Post.objects.order_by('-count_views')[:objects_number]
+    #    print(type(elements))
+    #    return {'elements': elements}
+    
 
 
 class PostsView(PermissionRequiredMixin, ListView):
@@ -21,9 +44,7 @@ class PostsView(PermissionRequiredMixin, ListView):
     template_name = 'core/posts.html'
     context_object_name = 'posts'
     ordering = ('-created_at',)
-    redirect_field_name = 'next'
-
-    
+    redirect_field_name = 'next'    
    
     def get_queryset(self):
         posts_queryset = super().get_queryset().select_related('user')
@@ -62,8 +83,8 @@ class DeletePost(PermissionRequiredMixin, DeleteView):
     redirect_field_name = 'next'
 
     def get_object(self, queryset=None):
-        temp = Post.objects.get(pk=self.kwargs.get('pk'))
-        if temp.user != self.request.user:
+        owner = Post.objects.get(pk=self.kwargs.get('pk'))
+        if owner.user != self.request.user:
             raise Http404('Not this time, body!')
         return super().get_object(queryset)
 
@@ -91,8 +112,8 @@ class UpdatePost(PermissionRequiredMixin, UpdateView):
     redirect_field_name = 'next'
 
     def get_object(self, queryset=None):
-        temp = Post.objects.get(pk=self.kwargs.get('pk'))
-        if temp.user != self.request.user:
+        owner = Post.objects.get(pk=self.kwargs.get('pk'))
+        if owner.user != self.request.user:
             raise Http404('Not this time, body!')
         return super().get_object(queryset)
         

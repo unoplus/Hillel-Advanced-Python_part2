@@ -11,7 +11,7 @@
             <h1 class="col text-center">Sign up</h1>
             <form method="post" action=".">
                 {% csrf_token %}
-                {{ form.as_p}}
+                {{ form}}
                 <div class="submit-row">
                     <input class="button" type="submit" value="SIGN UP">
                 </div>
