@@ -10,28 +10,6 @@ class HomeView(ListView):
     model = Post
     template_name = 'core/index.html'
     context_object_name = 'elem'
-    #posts = Post.objects.aggregate(Count('id'))
-    #print(posts)
-
-    #def get_object(self, queryset=None):
-    #    elements = Post.objects.order_by('-count_views')[:3]
-    #    posts = Post.objects.aggregate(Count('id'))
-    #    elements.users = Post.objects.aggregate(Count('id', distinct=True))
-    #    print(posts)
-    #    return elements
-        #return super().get_object(queryset)
-    
-    def get_queryset(self):
-        elements = Post.objects.order_by('-count_views')[:3]
-        elements.posts = Post.objects.aggregate(Count('id'))
-        elements.users = Post.objects.aggregate(Count('id', distinct=True))
-        return super().get_queryset()
-    
-    
-    #def get_popular(objects_number=3):
-    #    elements = Post.objects.order_by('-count_views')[:objects_number]
-    #    print(type(elements))
-    #    return {'elements': elements}
     
 
 
