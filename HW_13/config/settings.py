@@ -31,18 +31,23 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-
-    # local
-    'core',
 ]
+
+LOCAL_APPS = ['core',]
+
+DEV_APPS = ['debug_toolbar',]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+
+if DEBUG:
+    INSTALLED_APPS += DEV_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,8 +88,8 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_db',
         'USER': 'django',
         'PASSWORD': 'bK#rf134@jnD',
         'HOST': 'localhost',

@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{{ views.title }}{% endblock title %} {% block content %}
-<div class="container">
+{% block title %}{{ views.title }}{% endblock title %}
+{% block content %}
+<div class="container-fluid">
     <h1>{{ views.title }}</h1>
     <div class="row">
         <div class="col-md-2">
-            <img src="{% static 'images/stuff_only/avatar_stub.jpeg' %}" class="img-fluid img-thumbnail" alt="ava_stub">
+            <img src="{% static 'images/staff_only/avatar_stub.jpeg' %}" class="img-fluid img-thumbnail" alt="ava_stub">
             <h1 class="post-user mt-3">Username: {{ views.user }}</h1>
             <h1 class="post-user">Post counter: {{ views.post_count }}</h1>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card mb-3">
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
                             <div class="col text-start">Created at: {{ views.created_at }}</div>
-                            <div class="col text-end">View counter: {{ views.view_count }}</div>
+                            <div class="col text-end">View counter: {{ views.count_views }}</div>
                         </div>
                     </div>
                 </div>
@@ -33,14 +34,19 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="submit-row">
-                <input type="submit" value="UPDATE POST" name="_update_this">
-                <input type="submit" value="DELETE POST" name="_delete_this"
-                    onclick="document.location='{% url 'delete' views.id %}'">
+            <div class="container">
+                <div class="submit-row">
+                    <input class="button" type="submit" value="UPDATE POST" name="_update_it"
+                        onclick="document.location='{% url 'update_post' views.id %}'">
+                    <input class="button" type="submit" value="DELETE POST" name="_delete_it"
+                        onclick="document.location='{% url 'delete_post' views.id %}'">
+                </div>
             </div>
         </div>
+        <div class="col-md-2">
+
+        </div>
+
     </div>
 
 </div>
