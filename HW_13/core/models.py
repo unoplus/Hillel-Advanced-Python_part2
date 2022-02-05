@@ -2,12 +2,13 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse_lazy
 from .utils import TimeStampMixin
+from ckeditor.fields import RichTextField
 
 
 class Post(TimeStampMixin):
     title = models.CharField(max_length=100, null=False, blank=False, verbose_name='post name')
-    content = models.TextField(null=False, blank=False, verbose_name='content preview')
-    images = models.CharField(max_length=255, null=True, blank=True)
+    content = RichTextField(null=False, blank=False, verbose_name='content preview')
+    images = models.ImageField(null=True, blank=True, upload_to='photo/%Y/%m/%d/')
     user = models.ForeignKey(settings.AUTH_USER_MODULE, null=True, blank=False, on_delete=models.SET_NULL,
                              verbose_name='user name')
     count_views = models.IntegerField(default=0, verbose_name='count view')

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-3">
+            <h1>View some info</h1>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="col-md-7">
+            <section>
+                <h1>&#9760; Unfriended &#9760;</h1>
+                <div>
+                    <p class="fs-1">Hello dear {{ user }}! <br>
+                        Glad to see you again on "Unfriended"!
+                    </p>
+                </div>
+            </section>
+        </div>
+        {% else %}
+        <div class="col-md-7">
+            <section>
+                <h1>&#9760; Unfriended &#9760;</h1>
+                <br>
+                <h1>Hello victim!</h1>
+                <div>
+                    <p class="fs-1">You have reached the main page of the social network "Unfriended". <br>
+                        We are glad to welcome all fans of scary stories, horror films and other mysticism. <br>
+                        The topics of our members' posts are Urban Legends, such as: "The Halloween massacre", "Bloody
+                        Mary",
+                        etc.
+                        It is also welcome to write your own stories, the main thing is that they be designed in the
+                        style
+                        of
+                        urban
+                        legends.
+                        Unfortunately, our network policy does not allow unauthorized users to view content.
+                        If you want to access the content, you can join us by signing in or logging in.
+                        Thank you for your attention. I hope I managed to interest you and you will join our network.
+                    </p>
+                </div>
+
+        </div>
+        </section>
+        {% endif %}
+        <div class="col-md-2">
+            <h1>View some info</h1>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

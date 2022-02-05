@@ -6,7 +6,13 @@
     <h1>{{ views.title }}</h1>
     <div class="row">
         <div class="col-md-2">
-            <img src="{% static 'images/staff_only/avatar_stub.jpeg' %}" class="img-fluid img-thumbnail" alt="ava_stub">
+            {% if views.user.userprofile.profile_pic %}
+            <img src="{% static views.user.userprofile.profile_pic.url %}"
+                class="img-fluid img-thumbnail rounded-circle" alt="stab_ava" width="300" height="300">
+            {% else %}
+            <img src="{% static 'images/staff_only/avatar_stub.jpeg' %}" class="img-fluid img-thumbnail rounded-circle"
+                alt="stab_ava" width="300" height="300">
+            {% endif %}
             <h1 class="post-user mt-3">Username: {{ views.user }}</h1>
             <h1 class="post-user">Post counter: {{ views.post_count }}</h1>
         </div>
@@ -22,7 +28,7 @@
                 </div>
                 <div class="card-body">
                     <h1 class="card-title">{{ views.title }}</h1>
-                    <p class="card-text">{{ views.content }}</p>
+                    <p class="card-text">{{ views.content|safe }}</p>
                 </div>
                 <div class="card-footer text-muted">
                     <div class="container">

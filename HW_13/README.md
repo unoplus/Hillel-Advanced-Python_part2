@@ -62,3 +62,13 @@ Created Post and Like in admin panel
 **Some code review for optimization**
 **Some SQL-requests tuning.**
 **Adding lib 'pillow'.**
+
+## Update 05 at 31.01.2022
+
+**Change engine to SQLite.**
+**Adding main page.**
+**Create pages for authorization.**
+**Adding 'forms.py' with some stuff for user forms.**
+**Create templates, styles, etc.**
+**Some code review for optimization**
+**Adding some permissions.**
